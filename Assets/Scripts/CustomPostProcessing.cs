@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
+[ExecuteInEditMode]
 public class CustomPostProcessing : MonoBehaviour
 {
     Camera _Camera;
+
+    public bool viewInEditor = false;
     public PostProcessingStack effectStack;
 
     List<RenderTexture> temporaryTextures;
@@ -15,9 +18,12 @@ public class CustomPostProcessing : MonoBehaviour
         temporaryTextures = new List<RenderTexture>();
     }
 
+    [ImageEffectOpaque]
     void OnRenderImage(RenderTexture source, RenderTexture destination) {
+        if (!viewInEditor) { Graphics.CopyTexture(source, destination); return; }
+
         //No Post Processing effects to render
-        if (effectStack.Size <= 0) return;
+        if (effectStack.Size <= 0) { Graphics.CopyTexture(source, destination); return; }
 
         RenderTexture current = source;
 

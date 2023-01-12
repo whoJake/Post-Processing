@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[SerializeField]
 public abstract class PostProcessingEffect : ScriptableObject
 {
-    protected Material material;
+    [SerializeField] protected Material material;
 
     public virtual Material GetMaterial() {
         return material;
