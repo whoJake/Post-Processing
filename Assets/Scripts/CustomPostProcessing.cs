@@ -22,6 +22,7 @@ public class CustomPostProcessing : MonoBehaviour
     void OnRenderImage(RenderTexture source, RenderTexture destination) {
         if (!viewInEditor) { Graphics.CopyTexture(source, destination); return; }
 
+        if(effectStack == null) { Graphics.CopyTexture(source, destination); return; }
         //No Post Processing effects to render
         if (effectStack.Size <= 0) { Graphics.CopyTexture(source, destination); return; }
 
@@ -29,7 +30,7 @@ public class CustomPostProcessing : MonoBehaviour
 
         for(int index = 0; index < effectStack.Size; index++) {
             RenderTexture transfer = CreateTemporaryTexture(source.width, source.height);
-            PostProcessingEffect effect = effectStack.GetIndex(index);
+            PostProcessingEffect effect = effectStack[index];
 
             //Is not final effect
             if(index < effectStack.Size - 1) {

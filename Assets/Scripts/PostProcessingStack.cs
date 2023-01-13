@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[SerializeField]
+[System.Serializable]
 [CreateAssetMenu(menuName = "Custom/Stack")]
 public class PostProcessingStack : ScriptableObject//, IEnumerable<PostProcessingEffect>
 {
@@ -13,8 +13,9 @@ public class PostProcessingStack : ScriptableObject//, IEnumerable<PostProcessin
         }
     }
 
-    public PostProcessingEffect GetIndex(int index) {
-        return effects[index];
+    public PostProcessingEffect this[int i] {
+        get { return effects[i]; }
+        set { effects[i] = value; }
     }
 
     /*
