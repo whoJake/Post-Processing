@@ -1,8 +1,9 @@
-Shader "Hidden/testEffect"
+Shader "Hidden/EffectTest"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Multiplier ("Multiplier", Float) = 0
     }
     SubShader
     {
@@ -38,12 +39,14 @@ Shader "Hidden/testEffect"
             }
 
             sampler2D _MainTex;
+            float _Multiplier;
 
             fixed4 frag (v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv);
-                // just invert the colors
-                col.rgb = 1 - col.rgb;
+                //offset uv by sin wave
+                float2 uv = i.uv + float2((sin(i.uv.y * _Multiplier) / 5) , 0);
+
+                fixed4 col = tex2D(_MainTex, uv);
                 return col;
             }
             ENDCG

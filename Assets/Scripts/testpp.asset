@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2d83e61c5c29c41af6f0a6677db3c4, type: 3}
   m_Name: testpp
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 957203e2c02a13944910204d5649e4d2, type: 2}
+  material: {fileID: 2100000, guid: 20c2801b9e31cd64eaadbd74587639e4, type: 2}
