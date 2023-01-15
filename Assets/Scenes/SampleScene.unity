@@ -508,5 +508,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0be6041eb18a9641aef4fbcc9d7f841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewInEditor: 0
+  viewInEditor: 1
   effectStack: {fileID: 11400000, guid: 6d517307f8a25cf4881d41096ea5380c, type: 2}

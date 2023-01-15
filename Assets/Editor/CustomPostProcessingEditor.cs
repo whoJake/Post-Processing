@@ -7,13 +7,13 @@ using UnityEditor;
 [CustomEditor(typeof(CustomPostProcessing), true)]
 public class CustomPostProcessingEditor : Editor {
 
-    SerializedProperty _effectList;
+    SerializedProperty _effectStack;
     SerializedProperty _viewInEditor;
 
     private Editor _stackEditorCache;
 
     private void OnEnable() {
-        _effectList = serializedObject.FindProperty("effectStack");
+        _effectStack = serializedObject.FindProperty("effectStack");
         _viewInEditor = serializedObject.FindProperty("viewInEditor");
     }
 
@@ -23,12 +23,12 @@ public class CustomPostProcessingEditor : Editor {
         EditorGUILayout.PropertyField(_viewInEditor, new GUIContent("View Effects in Editor?"));
 
         //Show original scriptable object selection line
-        EditorGUILayout.PropertyField(_effectList, new GUIContent("Effect Stack"));
+        EditorGUILayout.PropertyField(_effectStack, new GUIContent("Effect Stack"));
 
         //If SO is selected, display its contents (editable) below
-        if(_effectList.objectReferenceValue != null) {
+        if(_effectStack.objectReferenceValue != null) {
             EditorGUI.indentLevel += 1;
-            CreateCachedEditor(_effectList.objectReferenceValue, null, ref _stackEditorCache);
+            CreateCachedEditor(_effectStack.objectReferenceValue, null, ref _stackEditorCache);
             _stackEditorCache.OnInspectorGUI();
             EditorGUI.indentLevel -= 1;
         } else {

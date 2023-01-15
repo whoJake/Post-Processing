@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 [CustomEditor(typeof(PostProcessingStack))]
 public class PostProcessingStackEditor : Editor
 {
+    
     SerializedProperty _effectList;
 
     void OnEnable() {
@@ -15,16 +16,12 @@ public class PostProcessingStackEditor : Editor
 
     public override void OnInspectorGUI() {
         serializedObject.UpdateIfRequiredOrScript();
-
-        //Draw array drawer label with array drawer to the side of it
-        EditorGUILayout.BeginHorizontal();
-        float labelWidth = EditorGUIUtility.labelWidth;
-        EditorGUIUtility.labelWidth = 10;
-        EditorGUILayout.LabelField("Effects", EditorStyles.boldLabel);
-        EditorGUIUtility.labelWidth = labelWidth;
-        EditorGUILayout.PropertyField(_effectList, GUIContent.none);
-        EditorGUILayout.EndHorizontal();
+        
+        //Only draw the list (not the script header)
+        EditorGUILayout.PropertyField(_effectList);
 
         serializedObject.ApplyModifiedProperties();
     }
+    
 }
+
